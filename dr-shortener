@@ -5,21 +5,21 @@
 (require koyo/random)
 (require net/sendurl)
 
-(define open-param (make-parameter ":"))
-(define new-param (make-parameter ":"))
+(define open-param (make-parameter ""))
+(define new-param (make-parameter ""))
 
 (define parser
     (command-line
     #:usage-help
-    "This is a test"
+    "Dr.Shortener: URL Shortener Tool"
 
-    #:once-each
-    [("-o" "--open") SHORT
-                     "Open URL"
-                     (open-param SHORT)]
-    [("-n" "--new") LONG
-                    "Shorten URL"
-                    (new-param LONG)]))
+    #:once-any
+    [("-o" "--open") SHORT-URL
+                     "Input the already shortened URL by the tool"
+                     (open-param SHORT-URL)]
+    [("-n" "--new") LONG-URL
+                    "Original, long URL from a website."
+                    (new-param LONG-URL)]))
 
 (define header "https://dr.sh/")
 (define filename "dr-shortener.csv")
@@ -63,7 +63,7 @@
                             (loop2 (cdr data))]))]
             [else (loop1 (read-line in) (append file-list (list loop-line)))])))
 
-(define (read-file long)
+(define (new-url long)
     (define in (open-input-file filename))
     (let loop
         ([line (read-line in)])
@@ -95,6 +95,6 @@
                 (send-url (car (string-split line ",")))]
             [else (loop (read-line in))])))
 
-(define (main param)
-    (read-file long))
-
+(if (non-empty-string? (open-param))
+        (open-url (open-param))
+        (new-url (new-param)))
