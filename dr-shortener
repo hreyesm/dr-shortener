@@ -32,7 +32,7 @@
     (define key (car pair))
     (define value (car (cdr pair)))
     (fprintf out "~a,~a\n" key value)
-    (printf "URL has been shortened:\n~a -> ~a" key value)
+    (printf "URL has been shortened:\n~a -> ~a\n" key value)
     (close-output-port out))
 
 (define (overwrite-pair line)
@@ -54,7 +54,7 @@
                     (cond
                         [(empty? data)
                             (close-output-port out)
-                            (printf "Short URL has been overwritten:\n~a -> ~a" key new-value)]
+                            (printf "Short URL has been overwritten:\n~a -> ~a\n" key new-value)]
                         [(string=? old-pair (car data))
                             (fprintf out "~a\n" new-pair)
                             (loop2 (cdr data))]
@@ -71,7 +71,7 @@
             [(eof-object? line)
                 (store-new-pair (list long (generate-short)))]
             [(string=? long (car (string-split line ",")))
-                (printf "URL has already been shortened.\n\t1. Overwrite existing short URL\n\t2. Add new entry")
+                (printf "URL has already been shortened.\n\t1. Overwrite existing short URL\n\t2. Add new entry\n")
                 (define input (read))
                 (cond
                     [(equal? input 1)
@@ -89,7 +89,7 @@
         (cond
             [(eof-object? line)
                 (close-input-port in)
-                (printf "URL not found")]
+                (printf "URL not found\n")]
             [(string=? short (car (cdr (string-split line ","))))
                 (close-input-port in)
                 (send-url (car (string-split line ",")))]
