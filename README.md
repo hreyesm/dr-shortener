@@ -6,10 +6,11 @@
 
 ## Project Description
 The aim of this project is to create a Racket executable script that takes any URL as an argument and then generates and stores a shortened version of it. A command-line interface will be provided such that when a user enters a previously shortened URL, the script will trigger a browser window whose content is associated with its corresponding long URL.
-	Dr. Shortener attempts to emulate the basic functionality of existing URL shortening software such as Bitly, TinyURL, among others. Such a tool can be quite useful when dealing with long, hard-to-remember URLs. Consider, for example, the following URL for the “Pairs, Lists, and Racket Syntax” section in the Racket documentation:
+
+Dr. Shortener attempts to emulate the basic functionality of existing URL shortening software such as Bitly, TinyURL, among others. Such a tool can be quite useful when dealing with long, hard-to-remember URLs. Consider, for example, the following URL for the “Pairs, Lists, and Racket Syntax” section in the Racket documentation:
 
 ```
-    https://docs.racket-lang.org/guidePairs__Lists__and_Racket_Syntax.html
+https://docs.racket-lang.org/guidePairs__Lists__and_Racket_Syntax.html
 ```` 
  
 With Dr. Shortener, the above URL can be shortened to the following six-character URL (excluding headers):
