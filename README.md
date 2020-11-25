@@ -54,7 +54,6 @@ chmod a+x greeting
 8. Run one of the following commands to know how to execute the program
 ```
 ./dr-shortener -h
-
 ./dr-shortener --help
 ```
 9. Run the program by inputting either a -o flag (to open a previously shortened URL) or with a -n flag to create a new shortened URL.
