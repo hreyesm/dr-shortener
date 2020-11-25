@@ -83,5 +83,5 @@ The project uses a CSV file to store the key-value pairs of a long URL and a sho
 * **(generate-short):** Generates a random alphanumeric string of length 6 and appends the header "https://dr.sh/" to the string.
 
 ## References
-* Warren, J. (2018). Making a Racket Command Line Program. Retrieved on November 5 2020, from: https://jackwarren.info/posts/guides/racket/racket-command-line/
+* Warren, J. (2018). _Making a Racket Command Line Program._ Retrieved on November 5 2020, from: https://jackwarren.info/posts/guides/racket/racket-command-line/
 * Exercises solved using Racket during semester August-December 2020, in the class Programming Languages (TC2006.1) taught by Dr. Gilberto Echevería Furió
