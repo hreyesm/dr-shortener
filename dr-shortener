@@ -8,26 +8,36 @@
 (define open-param (make-parameter ""))
 (define new-param (make-parameter ""))
 
+; Argument parser
 (define parser
     (command-line
     #:usage-help
     "Dr.Shortener: URL Shortener Tool"
-    
     #:once-any
     [("-o" "--open") SHORT-URL
                      "Input the already shortened URL by the tool"
                      (open-param SHORT-URL)]
-    [("-n" "--new") LONG-URL
-                    "Original, long URL from a website."
-                    (new-param LONG-URL)]))
+    [("-n" "--new")  LONG-URL
+                     "Original, long URL from a website."
+                     (new-param LONG-URL)]))
 
 (define header "https://dr.sh/")
-(define filename "dr-shortener.csv")
+(define filename "database.csv")
 
 (define (generate-short)
+    ; Generates a random alphanumeric string of length 6.
+
+    ; Returns
+    ; -------
+    ; str
     (string-append header (generate-random-string 6)))
 
 (define (store-new-pair pair)
+    ; Stores a new key-value pair consisting of a long URL and a short URL in the database.csv file.
+    
+    ; Parameters
+    ; -------
+    ; pair: List[str]
     (define out (open-output-file filename #:exists 'append))
     (define key (car pair))
     (define value (car (cdr pair)))
@@ -36,6 +46,11 @@
     (close-output-port out))
 
 (define (overwrite-pair line)
+    ; Overwrites an existing key-value pair consisting of a long URL and a short URL in the database.csv file.
+
+    ; Parameters
+    ; ----------
+    ; line : str
     (define in (open-input-file filename))
     (define key (car (string-split line ",")))
     (define old-value (car (cdr (string-split line ","))))
@@ -64,6 +79,11 @@
             [else (loop1 (read-line in) (append file-list (list loop-line)))])))
 
 (define (new-url long)
+    ; Generates a new short URL given a long URL before storing the key-value pair in the database.csv file.
+    
+    ; Parameters
+    ; ----------
+    ; long : str    
     (define in (open-input-file filename))
     (let loop
         ([line (read-line in)])
@@ -83,6 +103,11 @@
             [else (loop (read-line in))])))
 
 (define (open-url short)
+    ; Opens the default browser on the webpage associated with the specified short URL.
+    
+    ; Parameters
+    ; ----------
+    ; short : str 
     (define in (open-input-file filename))
     (let loop
         ([line (read-line in)])
@@ -95,7 +120,7 @@
                 (send-url (car (string-split line ",")))]
             [else (loop (read-line in))])))
 
-
+; Driver
 (cond 
     [(non-empty-string? (open-param))
         (open-url (open-param))]
