@@ -20,7 +20,7 @@ https://dr.sh/dQNH23
 ```
 
 ## Installation
-* The following is a list of requirements needed for the project to * run
+The following is a list of requirements needed for the project to run:
 * A computer with either Linux or MacOS
 * Racket v 7.8
 * Racket packages:
@@ -42,6 +42,7 @@ git clone https://github.com/hreyesm/dr-shortener.git
 raco pkg install koyo
 ```
 And follow the instructions in the terminal
+
 6. Likewise, install net-lib library
 ```
 raco pkg install  net-lib
