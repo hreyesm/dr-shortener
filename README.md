@@ -50,15 +50,21 @@ which racket
 ## Usage
 
 Enter one of the following commands for help on executing the program:
-```c
+```
 ./dr-shortener -h
 ./dr-shortener --help
 ```
+![Help](./img/help.png)
+
 Run the program by entering either a `-o` flag to open a previously shortened URL or with a `-n` flag to create a new shortened URL from a long URL.
-```c
+```
 ./dr-shortener -n https://download.racket-lang.org/all-versions.html
+```
+![New](./img/new.png)
+```
 ./dr-shortener -o https://dr.sh/0a5afa
 ```
+![Open](./img/open.png)
 
 ### Potential Errors
 
