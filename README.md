@@ -56,8 +56,8 @@ Enter one of the following commands for help on executing the program:
 ```
 ![Help](./img/help.png)
 
-Run the program by entering either a `-o` flag to open a previously shortened URL or with a `-n` flag to create a new shortened URL from a long URL.
-```
+Run the program by entering either a `-o`/`--open` flag followed by a shortened URL to open its corresponding webpage or a `-n`/`--new` flag followed by a long URL to create a new shortened URL.
+```c
 ./dr-shortener -n https://download.racket-lang.org/all-versions.html
 ```
 ![New](./img/new.png)
