@@ -1,4 +1,14 @@
 #! /usr/bin/racket
+
+; Dr. Shortener: URL Shortener Tool
+; ---------------------------------
+; Course: Programming Languages
+; Teacher: Gilberto Echeverría Furió
+; Authors: 
+    Daniela Vignau (A01021698)
+    Héctor Reyes (A01339607)
+; Date: December 4th, 2020
+
 #lang racket
 
 (require racket/cmdline)
