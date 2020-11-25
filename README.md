@@ -9,13 +9,13 @@ The aim of this project is to create a Racket executable script that takes any U
 
 Dr. Shortener attempts to emulate the basic functionality of existing URL shortening software such as Bitly, TinyURL, among others. Such a tool can be quite useful when dealing with long, hard-to-remember URLs. Consider, for example, the following URL for the “Pairs, Lists, and Racket Syntax” section in the Racket documentation:
 
-```
+```c
 https://docs.racket-lang.org/guidePairs__Lists__and_Racket_Syntax.html
 ```` 
  
 With Dr. Shortener, the above URL can be shortened to the following six-character URL (excluding headers):
 
-```
+```c
 https://dr.sh/dQNH23
 ```
 
@@ -26,23 +26,21 @@ The following is a list of requirements needed for the project to run:
 * Racket packages:
     * koyo
     * net-lib
-* Github repository: https://github.com/hreyesm/dr-shortener
+* Github repository(https://github.com/hreyesm/dr-shortener)
 
 ### Requirements
 ### Step-by-step-instructions
-1. Download and install Racket https://download.racket-lang.org/all-versions.html
+1. Download and install Racket(https://download.racket-lang.org/all-versions.html)
 2. Locate the terminal in any desired directory
 3. Clone the project’s repository by inputting the following command
 ```
 git clone https://github.com/hreyesm/dr-shortener.git
 ```
 4. Move to the repository directory in the terminal
-5. Install koyo library
+5. Install koyo library with all of its dependencies
 ```
 raco pkg install koyo
 ```
-And follow the instructions in the terminal
-
 6. Likewise, install net-lib library
 ```
 raco pkg install  net-lib
@@ -51,16 +49,36 @@ raco pkg install  net-lib
 ```
 chmod a+x greeting
 ```
-8. Run one of the following commands to know how to execute the program
+8. Make sure the interpreter path location is correct by typing the following command and copying and pasting the path in the shebang
 ```
+which racket
+```
+9. Run one of the following commands to know how to execute the program
+```c
 ./dr-shortener -h
 ./dr-shortener --help
 ```
-9. Run the program by inputting either a -o flag (to open a previously shortened URL) or with a -n flag to create a new shortened URL.
-```
+10. Run the program by inputting either a -o flag (to open a previously shortened URL) or with a -n flag to create a new shortened URL.
+```c
 ./dr-shortener -n https://download.racket-lang.org/all-versions.html
 ./dr-shortener -o https://dr.sh/0a5afa
 ```
+
+### Possible errors
+#### Bad Interpreter
+1. Install dos2unix file parser
+```c
+sudo apt-get install dos2unix
+```
+2. Enter the following command to convert the original file into UNIX format
+```c
+dos2unix ./dr-shortener
+```
+
+#### Bad Syntax: Expected pair but given ()
+1. Erase the current "database.csv" file
+2. Create a new comma-separated values with the name "database.csv"
+
 
 ## Project overview
 The project uses a comma-separated values (CSV) file to store the key-value pairs of a long URL and a short URL. It makes use of lists (in the form of pairs) to represent and manipulate the pairs generated in the program and reads through the file in a recursive manner.
