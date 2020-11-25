@@ -114,7 +114,7 @@
         (cond
             [(eof-object? line)
                 (close-input-port in)
-                (printf "Error. URL '~a' not found\n" short)]
+                (printf "Error: URL '~a' not found\n" short)]
             [(string=? short (car (cdr (string-split line ","))))
                 (close-input-port in)
                 (send-url (car (string-split line ",")))]
@@ -126,4 +126,4 @@
         (open-url (open-param))]
     [(non-empty-string? (new-param))
         (new-url (new-param))]
-    [else (printf "Error. For usage type in -h or --help\n")])
+    [else (printf "Error: For usage, type in -h or --help\n")])
