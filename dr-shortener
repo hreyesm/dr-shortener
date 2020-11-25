@@ -5,21 +5,21 @@
 (require koyo/random)
 (require net/sendurl)
 
-(define open-param (make-parameter ":"))
-(define new-param (make-parameter ":"))
+(define open-param (make-parameter ""))
+(define new-param (make-parameter ""))
 
 (define parser
     (command-line
     #:usage-help
-    "This is a test"
-
-    #:once-each
-    [("-o" "--open") SHORT
-                     "Open URL"
-                     (open-param SHORT)]
-    [("-n" "--new") LONG
-                    "Shorten URL"
-                    (new-param LONG)]))
+    "Dr.Shortener: URL Shortener Tool"
+    
+    #:once-any
+    [("-o" "--open") SHORT-URL
+                     "Input the already shortened URL by the tool"
+                     (open-param SHORT-URL)]
+    [("-n" "--new") LONG-URL
+                    "Original, long URL from a website."
+                    (new-param LONG-URL)]))
 
 (define header "https://dr.sh/")
 (define filename "dr-shortener.csv")
@@ -32,7 +32,7 @@
     (define key (car pair))
     (define value (car (cdr pair)))
     (fprintf out "~a,~a\n" key value)
-    (printf "URL has been shortened:\n~a -> ~a" key value)
+    (printf "URL has been shortened:\n~a -> ~a\n" key value)
     (close-output-port out))
 
 (define (overwrite-pair line)
@@ -54,7 +54,7 @@
                     (cond
                         [(empty? data)
                             (close-output-port out)
-                            (printf "Short URL has been overwritten:\n~a -> ~a" key new-value)]
+                            (printf "Short URL has been overwritten:\n~a -> ~a\n" key new-value)]
                         [(string=? old-pair (car data))
                             (fprintf out "~a\n" new-pair)
                             (loop2 (cdr data))]
@@ -63,7 +63,7 @@
                             (loop2 (cdr data))]))]
             [else (loop1 (read-line in) (append file-list (list loop-line)))])))
 
-(define (read-file long)
+(define (new-url long)
     (define in (open-input-file filename))
     (let loop
         ([line (read-line in)])
@@ -71,7 +71,7 @@
             [(eof-object? line)
                 (store-new-pair (list long (generate-short)))]
             [(string=? long (car (string-split line ",")))
-                (printf "URL has already been shortened.\n\t1. Overwrite existing short URL\n\t2. Add new entry")
+                (printf "URL '~a' has already been shortened.\n\t1. Overwrite existing short URL\n\t2. Add new entry\n" long)
                 (define input (read))
                 (cond
                     [(equal? input 1)
@@ -89,12 +89,16 @@
         (cond
             [(eof-object? line)
                 (close-input-port in)
-                (printf "URL not found")]
+                (printf "Error. URL '~a' not found\n" short)]
             [(string=? short (car (cdr (string-split line ","))))
                 (close-input-port in)
                 (send-url (car (string-split line ",")))]
             [else (loop (read-line in))])))
 
-(define (main param)
-    (read-file long))
 
+(cond 
+    [(non-empty-string? (open-param))
+        (open-url (open-param))]
+    [(non-empty-string? (new-param))
+        (new-url (new-param))]
+    [else (printf "Error. For usage type in -h or --help\n")])
