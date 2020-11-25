@@ -12,7 +12,7 @@
     (command-line
     #:usage-help
     "Dr.Shortener: URL Shortener Tool"
-
+    
     #:once-any
     [("-o" "--open") SHORT-URL
                      "Input the already shortened URL by the tool"
@@ -71,7 +71,7 @@
             [(eof-object? line)
                 (store-new-pair (list long (generate-short)))]
             [(string=? long (car (string-split line ",")))
-                (printf "URL has already been shortened.\n\t1. Overwrite existing short URL\n\t2. Add new entry\n")
+                (printf "URL '~a' has already been shortened.\n\t1. Overwrite existing short URL\n\t2. Add new entry\n" long)
                 (define input (read))
                 (cond
                     [(equal? input 1)
@@ -89,12 +89,16 @@
         (cond
             [(eof-object? line)
                 (close-input-port in)
-                (printf "URL not found\n")]
+                (printf "Error. URL '~a' not found\n" short)]
             [(string=? short (car (cdr (string-split line ","))))
                 (close-input-port in)
                 (send-url (car (string-split line ",")))]
             [else (loop (read-line in))])))
 
-(if (non-empty-string? (open-param))
-        (open-url (open-param))
-        (new-url (new-param)))
+
+(cond 
+    [(non-empty-string? (open-param))
+        (open-url (open-param))]
+    [(non-empty-string? (new-param))
+        (new-url (new-param))]
+    [else (printf "Error. For usage type in -h or --help\n")])
