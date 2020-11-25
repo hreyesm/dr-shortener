@@ -47,7 +47,7 @@ raco pkg install  net-lib
 ```
 7. Type in the following command
 ```
-chmod a+x greeting
+chmod a+x dr-shortener
 ```
 8. Make sure the interpreter path location is correct by typing the following command and copying and pasting the path in the shebang
 ```
