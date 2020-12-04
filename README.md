@@ -48,15 +48,16 @@ which racket
 ```
 
 ## Usage
+1. Create a new CSV file with the name "database.csv" with the command ```touch database.csv```.
 
-Enter one of the following commands for help on executing the program:
+2. Enter one of the following commands for help on executing the program:
 ```
 ./dr-shortener -h
 ./dr-shortener --help
 ```
 ![Help](./img/help.png)
 
-Run the program by entering either a `-o`/`--open` flag followed by a shortened URL to open its corresponding webpage or a `-n`/`--new` flag followed by a long URL to create a new shortened URL.
+3. Run the program by entering either a `-o`/`--open` flag followed by a shortened URL to open its corresponding webpage or a `-n`/`--new` flag followed by a long URL to create a new shortened URL.
 ```c
 ./dr-shortener -n https://download.racket-lang.org/all-versions.html
 ```
@@ -65,12 +66,6 @@ Run the program by entering either a `-o`/`--open` flag followed by a shortened 
 ./dr-shortener -o https://dr.sh/0a5afa
 ```
 ![Open](./img/open.png)
-
-### Potential Errors
-
-#### Bad Syntax: Expected pair but given ()
-1. Erase the current "database.csv" file
-2. Create a new CSV file with the name "database.csv"
 
 ## Project Overview
 The project uses a CSV file to store the key-value pairs of a long URL and a short URL. It makes use of lists (in the form of pairs) to represent and manipulate the pairs generated in the program and reads through the file in a recursive manner.
