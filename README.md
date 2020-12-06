@@ -1,4 +1,6 @@
-# Dr. Shortener: URL Shortening Tool Written in Racket
+# Dr. Shortener
+
+URL shortening tool written in Racket.
 
 ### Authors
 * [Daniela Vignau](https://github.com/dvigleo)
