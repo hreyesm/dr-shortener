@@ -1,8 +1,8 @@
-# Dr. Shortener: URL Shortener Tool
+# Dr. Shortener: URL Shortening Tool Written in Racket
 
 ### Authors
-* [Daniela Vignau (A01021698)](https://github.com/dvigleo)
-* [Héctor Reyes (A01339607)](https://github.com/hreyesm)
+* [Daniela Vignau](https://github.com/dvigleo)
+* [Héctor Reyes](https://github.com/hreyesm)
 
 ## Project Description
 The aim of this project is to create a Racket executable script that takes any URL as an argument and then generates and stores a shortened version of it. A command-line interface is provided such that when a user enters a previously shortened URL, the script will trigger a browser window whose content is associated with its corresponding long URL.
